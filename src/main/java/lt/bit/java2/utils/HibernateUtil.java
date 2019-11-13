@@ -58,11 +58,11 @@ public class HibernateUtil {
             Metadata metadata = sources.getMetadataBuilder().build();
             entityManagerFactory = metadata.getSessionFactoryBuilder().build();
 
-        } catch (Exception e) {
+        } catch (Throwable t) {
             if (registry != null) {
                 StandardServiceRegistryBuilder.destroy(registry);
             }
-            e.printStackTrace();
+            throw new ExceptionInInitializerError(t);
         }
     }
 
